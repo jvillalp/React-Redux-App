@@ -7,7 +7,7 @@ const JokesForm = props => {
   const handleGetData = e =>{
       e.preventDefault();
       props.getData();
-  }
+  };
 
   return (
     <div>

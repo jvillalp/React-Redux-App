@@ -1,8 +1,9 @@
-import {GET_DATA, UPDATE_JOKE} from '../actions';
+import {FETCH_DATA, UPDATE_JOKE, SET_ERROR} from '../actions';
 
 const initialState ={
     jokes:[],
-    isFetchingData: false
+    isFetchingData: false,
+    error:''
 };
 
 // export const getData = () =>{
@@ -13,16 +14,24 @@ const initialState ={
 
 export const jokesReducer = (state=initialState, action) =>{
     switch(action.type) {
-        case GET_DATA :
+        case FETCH_DATA :
             return {
                 ...state,
-                isFetchingData: true
+                isFetchingData: true,
+                jokes: []
             };
         case UPDATE_JOKE:
             return{
                 ...state,
-                jokes:action.payload
-            }
+                jokes:action.payload,
+                isFetchingData: false
+            };
+            case SET_ERROR :
+                return{
+                    ... state,
+                    isFetchingData: false,
+                    error: action.payload
+                }
         default:
             return state;
     }
